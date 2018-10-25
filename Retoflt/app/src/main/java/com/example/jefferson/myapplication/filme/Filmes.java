@@ -10,6 +10,6 @@ import retrofit2.http.Path;
 
 public interface Filmes {
 
-    @GET("/api/{user}")
+    @GET("/api/filme/{user}")
     Call<List<Filme>> reposForuser(@Path("user") String user);
 }

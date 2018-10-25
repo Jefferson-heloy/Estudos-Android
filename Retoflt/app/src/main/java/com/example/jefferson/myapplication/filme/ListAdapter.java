@@ -1,6 +1,7 @@
 package com.example.jefferson.myapplication.filme;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.jefferson.myapplication.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -34,7 +36,7 @@ public class ListAdapter extends ArrayAdapter {
         }
         if(convertView == null)
         {
-            view = inflater.inflate(R.layout.liste_item,null);
+            view = inflater.inflate(R.layout.liste_filme,null);
         }
         TextView name = (TextView)view.findViewById(R.id.textview);
         TextView descricao = (TextView)view.findViewById(R.id.textview1);
@@ -42,9 +44,10 @@ public class ListAdapter extends ArrayAdapter {
         Filme filmeList = list.get(position);
         if(name != null)
         {
+
             // show The Image in a ImageView
-            new ConvertImage.DownloadImageTask((ImageView) view.findViewById(R.id.imageView))
-                    .execute(filmeList.getImagem());
+            Picasso.get().load(filmeList.getImagem())
+                    .into((ImageView) view.findViewById(R.id.imageView));
             name.setText(filmeList.getNome());
             descricao.setText(filmeList.getDescricao());
 
